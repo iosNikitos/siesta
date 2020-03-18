@@ -32,13 +32,13 @@ import Alamofire
 */
 public struct AlamofireProvider: NetworkingProvider
     {
-    public let manager: Alamofire.SessionManager
+    public let manager: Alamofire.Session
 
-    public init(manager: Alamofire.SessionManager = SessionManager.default)
+    public init(manager: Alamofire.Session = Session.default)
         { self.manager = manager }
 
     public init(configuration: URLSessionConfiguration)
-        { self.init(manager: Alamofire.SessionManager(configuration: configuration)) }
+        { self.init(manager: Alamofire.Session(configuration: configuration)) }
 
     public func startRequest(
             _ request: URLRequest,
@@ -73,7 +73,7 @@ internal struct AlamofireRequestNetworking: RequestNetworking, SessionTaskContai
         { alamofireRequest.cancel() }
     }
 
-extension Alamofire.SessionManager: NetworkingProviderConvertible
+extension Alamofire.Session: NetworkingProviderConvertible
     {
     /// You can pass an `AlamoFire.Manager` when creating a `Service`.
     public var siestaNetworkingProvider: NetworkingProvider
